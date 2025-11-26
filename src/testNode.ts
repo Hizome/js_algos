@@ -1,17 +1,17 @@
 import { ListNode } from './Node.js';
+import { removeElements } from './removeNode.js';
 
 // 创建链表节点
 console.log('=== 测试 ListNode 类 ===\n');
 
 // 创建单个节点
-const node1 = new ListNode(1);
+const node1 = new ListNode(1, null);
 console.log('节点1:', { val: node1.val, next: node1.next });
 
 // 创建链表: 1 -> 2 -> 3 -> null
-const node2 = new ListNode(2);
-const node3 = new ListNode(3);
+const node3 = new ListNode(3, null);
+const node2 = new ListNode(2, node3);
 node1.next = node2;
-node2.next = node3;
 
 console.log('\n创建链表: 1 -> 2 -> 3 -> null');
 
@@ -25,6 +25,8 @@ function printList(head: ListNode | null): void {
   }
   console.log('链表值:', values.join(' -> '));
 }
+
+removeElements(node1, 2);
 
 printList(node1);
 
