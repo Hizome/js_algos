@@ -31,4 +31,37 @@ function packge01(value: number[], weight: number[], volume: number): number {
     return dp[volume];
 };
 
-export { packge01 };
+// in compelete package, because you can put mutiable item
+// so you should find i-1(that means item i not put)
+// you should find just i (max seconde pararmeter)
+function packageCompelete(value: number[], weight: number[], volume: number): number {
+    const dp = Array(volume-1).fill(0)
+	.map(() => Array(weight.length).fill(0));
+    // if you could put same item in i=0, just put all the way
+    for (let j = weight[0]; j <= volume; j++) {
+	dp[0][j] = dp[0][j - weight[0]] + value[0];
+    }
+
+    // order is fine
+    for (let i = 1; i < value.length; i++) {
+	for (let j = 0; j <= volume; j++) {
+	    if (j < weight[i]) dp[i][j] = dp[i-1][j];
+	    else dp [i][j] = Math.max(dp[i-1][j], dp[i][j - weight[i]]+ value[i]);
+	}
+    }
+
+    for (let i = 0; i < value.length; i++) {
+	for ( let j = 0; j < volume+1; j++) {
+	    console.log(dp[i][j]);
+	}
+    }
+    // It seems like the 2-dim we create is dynamic,
+    // even if i just create with width = volume
+    //still can print volume + 1
+    
+    return dp[weight.length-1][volume];
+};
+
+
+
+export { packge01, packageCompelete };
