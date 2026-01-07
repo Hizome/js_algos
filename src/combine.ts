@@ -4,7 +4,7 @@
 //
 
 
-function combine(n: number, k: nubmer): number[][] {
+function combine(n: number, k: number): number[][] {
 	let resArr: number[][] = [];
 
 	function backTracking(n: number, k: number, startIndex: number, tempArr: number[]): void {
@@ -25,7 +25,7 @@ function combine(n: number, k: nubmer): number[][] {
 
 
 // all the number plus = 9
-function combine_3(k: number, n: nubmer): numberp[][] {
+function combine_3(k: number, n: number): number[][] {
 	const resArr: number[][] = [];
 	function backTracking(k: number, n: number, sum: number, startIndex: number, tempArr: number[]): void {
 		if (sum > n) return;
@@ -37,13 +37,13 @@ function combine_3(k: number, n: nubmer): numberp[][] {
 		}
 		for (let i = startIndex;  i <= 9 - (k - tempArr.length) + 1; i++) {
 			tempArr.push(i);
-			backTracking(n,k,i+1,tempArr);
+			backTracking(n,k,9,i+1,tempArr);
 			tempArr.pop(); // next
 		}
 
 	}
 
-	backTracking();
+	backTracking(n,k,9,1,[]);
 	return resArr;
 };
 
