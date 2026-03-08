@@ -125,7 +125,7 @@ function levelOrder(root) {
 		const floor = [];
 
 		for (let i = 0; i < preSize; i++) {
-			const v = queue.shift();
+			const v = queue.shift(); // remove the first element
 			floor.push(v.val);
 
 		}
